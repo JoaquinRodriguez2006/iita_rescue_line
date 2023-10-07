@@ -1,4 +1,4 @@
-# Team Piojo
+# Team SLA-Piojo
 Hi there! Welcome to Team Piojo's GitHub repo! We are a robotics team preparing a line follower robot able to rescue victims and classify them into alive or dead. All the progress we make will be published here!
 ### Overview / Components
 We are currently trying to clone a robot from a Robotics team in Singapur (all rights reserved) so that we can all learn how to build world-class robot without having to go through the regular process, which might take years!
