@@ -49,10 +49,9 @@ void loop()
       Serial.print(char(incomingByte));
 
       // Data Reading
-      int data = Serial5.read();
-      if (data == 97)
+      if (incomingByte == 97)
         serial5state = 0; // There are no obstacels on the way, so the robot can keep going.
-      else if (data == 98)
+      else if (incomingByte == 98)
         serial5state = 3; // There are two green squares, and the robot has to go back
       
       // Data Processing
