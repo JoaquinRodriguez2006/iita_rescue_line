@@ -2,7 +2,7 @@
 #include <drivebase.h>
 #include <PID.h>
 double steer, speed;
-int dir, green_state, serial6state = 0; // 0 is motor angle, 1 is motor speed
+int dir, green_state, serial5state = 0; // 0 is motor angle, 1 is motor speed
 
 Moto bl(4, 3, 2);
 Moto fl(35, 34, 36); // pwm dir enc
@@ -51,27 +51,30 @@ void serialEvent1()
 int reverse = 0;
 int angle0;
 
-void serialEvent6()
+void serialEvent5()
 {
-    int data = Serial6.read();
+    // Data Reading
+    int data = Serial5.read();
     if (data == 255)
-        serial6state = 0;
+        serial5state = 'go'; // There are no obstgacels on the way, so the robot can keep going.
     else if (data == 254)
-        serial6state = 1;
-    else if (data == 253)
-        serial6state = 2;
+        serial5state = 'gl'; // There's a green square on the left
+    else if (data == 253) 
+        serial5state = 'gr'; // There's a green square on the right
     else if (data == 252)
-        serial6state = 3;
-    else if (serial6state == 0)
+        serial5state = 'dg'; // There are two green squares, and the robot has to go back
+
+    // Data Processing
+    else if (serial5state == 'go')
     {
         speed = (double)data / 100 * 100; // 100 set as max speed
         speed = max(20, speed);           // 20 set as min speed
     }
-    else if (serial6state == 1)
+    else if (serial5state == 'gl')
     {
         steer = ((double)data - 90) / 90;
     }
-    else if (serial6state == 2)
+    else if (serial5state == 'gr')
     {
         green_state = data;
 
