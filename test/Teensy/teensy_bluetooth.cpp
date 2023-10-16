@@ -1,3 +1,6 @@
+// This is a testing ciode for the HC06 Board. If you want to use it in the main code, you'll need to modify it so as to
+// be useful
+
 #include <SoftwareSerial.h>
 
 SoftwareSerial BTSerial(2, 3); // RX, TX pins del módulo Bluetooth
