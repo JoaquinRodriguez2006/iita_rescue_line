@@ -40,8 +40,8 @@ void serialEvent5()
         serial5state = 3;
     else if (serial5state == 0)
     {
-        speed = (double)data /20 * 20; // 100 set as max speed
-        speed = max(15, speed);           // 20 set as min speed
+        speed = (double)data /20 * 20; // 20 set as max speed
+        speed = max(15, speed);           // 15 set as min speed
     }
     else if (serial5state == 1)
     {
