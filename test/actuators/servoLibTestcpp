@@ -1,0 +1,19 @@
+#include <Arduino.h>
+#include <Servo.h>
+#include "claw.h"
+
+DFServo left(14, 540, 2390, 274);
+
+void setup()
+{
+    // put your setup code here, to run once:
+    Serial.begin(9600);
+}
+
+void loop()
+{
+    left.setAngle(90);
+    delay(3000);
+    left.setAngle(180);
+    delay(3000);
+}

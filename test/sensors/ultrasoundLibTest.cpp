@@ -14,13 +14,13 @@ unsigned long pingTimer[SONAR_NUM]; // Holds the next ping time.
 unsigned int cm[SONAR_NUM];
 uint8_t currentSonar = 0;
 
-void ISR5()
+void ISR5()///Esta función se ejecutará cada vez que el sensor ultrasónico detecte un eco.///
 { // If ping echo, set distance to array.
     if (sonar[currentSonar].check_timer())
         cm[currentSonar] = sonar[currentSonar].ping_result / US_ROUNDTRIP_CM;
 }
 
-void oneSensorCycle()
+void oneSensorCycle()///muestra la distancia medida por cada sensor y lo muestra en el monitor///
 { // Do something with the results.
     for (uint8_t i = 0; i < SONAR_NUM; i++)
     {
@@ -35,24 +35,27 @@ void oneSensorCycle()
 void setup()
 {
     Serial.begin(115200); // Open serial monitor at 115200 baud to see ping results.
-    pingTimer[0] = millis() + 75;
+    pingTimer[0] = millis() + 75;///el primer sensor hace su primera medicion desp de 75 milisegundos
+    ///las mediciones de todos los sensores se distribuyan a lo largo del tiempo y no se realicen al mismo tiempo.//
     for (uint8_t i = 1; i < SONAR_NUM; i++)
         pingTimer[i] = pingTimer[i - 1] + PING_INTERVAL;
+        ///utiliza el pingtimer para la funcion de arriba///
 }
 
 void loop()
 {
-    for (uint8_t i = 0; i < SONAR_NUM; i++)
+    for (uint8_t i = 0; i < SONAR_NUM; i++)///se verifican los sensores uno por uno
     {
-        if (millis() >= pingTimer[i])
+        if (millis() >= pingTimer[i])///Acá se decide si hay  que medir la distancia del sensor
         {
-            pingTimer[i] += PING_INTERVAL * SONAR_NUM;
+            pingTimer[i] += PING_INTERVAL * SONAR_NUM;///Se configura el temporizador para los sensores
             if (i == 0 && currentSonar == SONAR_NUM - 1)
                 oneSensorCycle(); // Do something with results.
             sonar[currentSonar].timer_stop();
             currentSonar = i;
             cm[currentSonar] = 0;
             sonar[currentSonar].ping_timer(ISR5);
+            ///Se repite todo para seguir tomando lectura de distancias y decisiones basada en la lectura///
         }
     }
 }

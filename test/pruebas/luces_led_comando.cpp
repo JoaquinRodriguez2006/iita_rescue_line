@@ -49,8 +49,8 @@ void serialEvent5()
     else if (data == 252)
         {serial5state = 3;   //180
          digitalWrite(30,0);
-         digitalWrite(31,1);
-        digitalWrite(32,1);}
+         digitalWrite(31,1)
+        digitalWrite(32,1)}
     else if (serial5state == 0)
     {
         speed = 20;          // 20 set as min 

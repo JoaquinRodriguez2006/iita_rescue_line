@@ -36,21 +36,13 @@ void serialEvent5()
     int data = Serial5.read();
     Serial.println("reading serial 5");
     if (data == 255)
-       { serial5state = 0;   // sigue negro
-        digitalWrite(30,1);}
+        serial5state = 0;
     else if (data == 254)
-        {serial5state = 1;  // donlar izquierda
-        digitalWrite(30,0);
-        digitalWrite(31,1);} 
+        serial5state = 1;
     else if (data == 253)
-        {serial5state = 2; // derecha 
-        digitalWrite(30,0);
-        digitalWrite(32,1);}
+        serial5state = 2;
     else if (data == 252)
-        {serial5state = 3;   //180
-         digitalWrite(30,0);
-         digitalWrite(31,1);
-        digitalWrite(32,1);}
+        serial5state = 3;   
     else if (serial5state == 0)
     {
         speed = 20;          // 20 set as min 
@@ -104,11 +96,10 @@ void setup()
   // If you don't want use threshold, comment this line or set 0.
   mpu.setThreshold(3);
 //mpu
-//pines de los leds
-pinMode(30,OUTPUT);
-pinMode(31,OUTPUT);
-pinMode(32,OUTPUT);
 }
+
+
+
 void loop()
 {
    
