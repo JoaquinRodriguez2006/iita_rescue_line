@@ -5,9 +5,9 @@
 #define PING_INTERVAL 33
 
 NewPing sonar[SONAR_NUM] = {
-    NewPing(8, 9, MAX_DISTANCE),   // right
-    NewPing(11, 10, MAX_DISTANCE), // left
-    NewPing(39, 33, MAX_DISTANCE), // front
+    NewPing(3, 2, MAX_DISTANCE),   // right
+    NewPing(9, 8, MAX_DISTANCE), // left
+    NewPing(11, 10, MAX_DISTANCE), // front
 };                                 // trigger, echo, max distance in cm
 
 unsigned long pingTimer[SONAR_NUM]; // Holds the next ping time.
